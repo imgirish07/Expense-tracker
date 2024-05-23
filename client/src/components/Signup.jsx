@@ -65,14 +65,18 @@ function Signup() {
   }
 
   return (
-    <div className='h-screen w-screen bg-[#1c1c1c]
+    <div className='h-screen w-[100%] bg-[#1c1c1c]
      flex justify-center items-center'>
 
-      <div className='border-2 rounded-xl h-[65vh] w-[80vw] flex flex-col  sm:h-[65vh] sm:w-[40vw] lg:h-[65vh] lg:w-[25vw]'>
+      <div className='bg-[#272727] rounded-xl h-[70vh] w-[80vw] flex flex-col  sm:h-[70vh] sm:w-[40vw] lg:h-[70vh] lg:w-[25vw]'>
 
         <div className=' text-white text-4xl font-bold h-[10%] flex items-center justify-center px-4 ' >
           Sign Up
         </div>
+        <div className=' font-medium text-white h-[40px] w-[100%] gap-x-1 flex items-center justify-center  ' >
+            Already a member?
+            <Link to="/login" className=' text-red-600 hover:text-orange-400'>Log In</Link>
+          </div>
 
         <div className=' flex flex-col gap-2 my-[20px] h-[50%] px-4' >
 
@@ -83,7 +87,7 @@ function Signup() {
           <input type={showPassword ? 'text' : 'password'}
             name="Password"
             placeholder="Password" onChange={handlePassword} className=' bg-transparent text-white border border-red-600 h-[40px] px-[10px]' />
-
+          
           <button type="button" onClick={() => setShowPassword(!showPassword)} className='flex px-[12px] w-[40px] text-gray-400 font-medium '> {showPassword ? 'Hide' : 'Show'}
           </button>
 
@@ -109,11 +113,6 @@ function Signup() {
               <button type="submit" style={{ height: '30px', width: '30px', backgroundImage: `url(${facebookLogo})`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', backgroundPosition: 'center' }}></button>
             </div>
 
-          </div>
-
-          <div className=' font-medium text-white h-[40px] w-[100%] gap-x-1 flex items-center justify-center  ' >
-            Already a member?
-            <Link to="/login" className=' text-red-600 hover:text-orange-400'>Log In</Link>
           </div>
 
         </div>

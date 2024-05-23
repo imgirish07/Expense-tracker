@@ -61,14 +61,19 @@ function Login() {
     }
 
     return (
-        <div className='h-screen w-screen bg-[#1c1c1c]
+        <div className='h-screen w-[100%] bg-[#1c1c1c]
         flex justify-center items-center'>
 
-            <div className='border-2 rounded-xl h-[65vh] w-[80vw] flex flex-col  sm:h-[65vh] sm:w-[40vw] lg:h-[65vh] lg:w-[25vw]'>
+            <div className=' bg-[#272727] rounded-xl h-[70vh] w-[80vw] flex flex-col  sm:h-[70vh] sm:w-[40vw] lg:h-[70vh] lg:w-[25vw]'>
 
                 <div className=' text-white text-4xl font-bold h-[10%] flex items-center justify-center px-4 ' >
                     Log In
                 </div>
+
+                <div className='text-white font-medium h-[40px] w-[100%] gap-x-1 flex items-center justify-center  ' >
+                        New to this site?
+                        <Link to="/signup" className='text-red-600 hover:text-orange-400'>Sign Up</Link>
+                    </div>
 
                 <div className=' flex flex-col gap-2 my-[20px] h-[50%] px-4' >
                     {/* 
@@ -105,11 +110,6 @@ function Login() {
                             <button type="submit" style={{ height: '30px', width: '30px', backgroundImage: `url(${facebookLogo})`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', backgroundPosition: 'center' }}></button>
                         </div>
 
-                    </div>
-
-                    <div className='text-white font-medium h-[40px] w-[100%] gap-x-1 flex items-center justify-center  ' >
-                        New to this site?
-                        <Link to="/signup" className='text-red-600 hover:text-orange-400'>Sign Up</Link>
                     </div>
 
                 </div>

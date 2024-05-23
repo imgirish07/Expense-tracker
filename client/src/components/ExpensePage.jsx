@@ -27,7 +27,8 @@ function ExpensePage() {
     }, [navigate]);
 
     return (
-        <div>Welcome to my expense page</div>
+        <div className=' text-white h-screen w-[100%] bg-[#1c1c1c]
+    flex justify-center items-center'>WELCOME TO THE EXPENSE PAGE</div>
     )
 
 }
