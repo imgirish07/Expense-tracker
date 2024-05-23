@@ -61,36 +61,37 @@ function Login() {
     }
 
     return (
-        <div className='h-screen w-screen flex justify-center items-center'>
+        <div className='h-screen w-screen bg-[#1c1c1c]
+        flex justify-center items-center'>
 
-            <div className='border-2 rounded-xl h-[85vh] w-[85vw] flex flex-col  sm:h-[80vh] sm:w-[50vw] lg:h-[80vh] lg:w-[35vw]'>
+            <div className='border-2 rounded-xl h-[65vh] w-[80vw] flex flex-col  sm:h-[65vh] sm:w-[40vw] lg:h-[65vh] lg:w-[25vw]'>
 
-                <div className='text-xl font-bold h-[10%] flex items-center justify-center px-4 ' >
-                    Welcome Back
+                <div className=' text-white text-4xl font-bold h-[10%] flex items-center justify-center px-4 ' >
+                    Log In
                 </div>
 
                 <div className=' flex flex-col gap-2 my-[20px] h-[50%] px-4' >
                     {/* 
                     <input type="text" name="PhoneNumber" placeholder="Phone Number" className='border rounded-lg h-[40px] px-[10px] bg-[#f1f1f1]' /> */}
 
-                    <input type="email" name="email" placeholder="Email" onChange={handleEmail} className='border rounded-lg h-[40px] px-[10px] bg-[#f1f1f1]' />
+                    <input type="email" name="email" placeholder="Email" onChange={handleEmail} className='bg-transparent border border-red-600 text-white h-[40px] px-[10px] ' />
 
                     <input type={showPassword ? 'text' : 'password'}
                         name="Password"
-                        placeholder="Password" onChange={handlePassword} className='border rounded-lg h-[40px] px-[10px] bg-[#f1f1f1]' />
+                        placeholder="Password" onChange={handlePassword} className='bg-transparent border border-red-600 text-white h-[40px] px-[10px] ' />
 
-                    <button type="button" onClick={() => setShowPassword(!showPassword)} className='flex px-[12px] w-[40px] text-gray-500 font-medium '> {showPassword ? 'Hide' : 'Show'}
+                    <button type="button" onClick={() => setShowPassword(!showPassword)} className='flex px-[12px] w-[40px] text-gray-400 font-medium '> {showPassword ? 'Hide' : 'Show'}
                     </button>
 
                 </div>
 
-                <div className='flex justify-center items-center border-2 rounded-xl h-[40px] bg-[#79a4e3] hover:bg-[#4d8be5] text-white font-bold mx-4 ' >
+                <div className='flex justify-center items-center h-[40px] bg-[#0664D3] hover:bg-[#4d8be5] text-white font-bold mx-4 ' >
                     <button type="submit" onClick={handleSubmit} >Sign In</button>
                 </div>
 
                 <div className='flex flex-col justify-center items-center gap-2'>
 
-                    <div className=' font-medium h-[40px] w-[100%] flex items-center justify-center text-[#8a2be2] ' >
+                    <div className=' font-medium h-[40px] w-[100%] flex items-center justify-center text-white ' >
                         Or
                     </div>
 
@@ -106,9 +107,9 @@ function Login() {
 
                     </div>
 
-                    <div className=' font-medium h-[40px] w-[100%] flex items-center justify-center  ' >
-                        Don’t have an account yet?
-                        <Link to="/signup" className='text-[blue] hover:text-orange-400'>Create an account</Link>
+                    <div className='text-white font-medium h-[40px] w-[100%] gap-x-1 flex items-center justify-center  ' >
+                        New to this site?
+                        <Link to="/signup" className='text-red-600 hover:text-orange-400'>Sign Up</Link>
                     </div>
 
                 </div>
