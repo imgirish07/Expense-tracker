@@ -14,6 +14,7 @@ const { connectToMongoDB } = require('./connection');
 
 const homeRoute = require('./routes/home');
 const userRoute = require('./routes/user');
+const expenseRoute = require('./routes/expense');
 const { restrictedToLoggedinUserOnly } = require('./middlewares/auth');
 
 // connect to MongoDB
@@ -42,6 +43,7 @@ app.use(passport.session());
 // routes
 app.use('/', homeRoute);
 app.use('/user', userRoute);
+app.use('/', expenseRoute);
 
 // app.get('/check', restrictedToLoggedinUserOnly, (req, res) => {
 //     return res.json({ message: "Middleware is Working" });
@@ -71,7 +73,7 @@ app.get('/auth/google/callback',
 );
 
 app.get('/login/success', async (req, res) => {
-    const user= req.user;
+    const user = req.user;
     console.log("THIS IS THE TEST LOGIN SUCCESSPAGE", user)
     const boolValue = true;
     return res.status(200).json({ message: "successful google login", user, boolValue });
