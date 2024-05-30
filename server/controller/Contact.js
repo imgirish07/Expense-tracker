@@ -15,7 +15,7 @@ async function addContactToUserSchema(userId, contactData) {
         // console.log("user id:", userId); // Log the value of contactData
 
         // // Add the new contact's _id to the user's contacts array
-        user.contacts.push(contactData._id);  // change 1--> contactData to contactData's ID
+        await user.contacts.push(contactData._id);  // change 1--> contactData to contactData's ID
         const savedUser = await user.save();
         if (!savedUser) return null;
         console.log("savedUser : ", savedUser);
@@ -38,6 +38,7 @@ async function handleContact(req, res) {
         });
         // this is the function that will give me the user stored in the token(jwt) which is stored in cookies
         const user = await GetUserFromCookies(req, res);
+        console.log(user);
         // when user wants to add new contact
         await addContactToUserSchema(user._id, saveContact);
 

@@ -7,11 +7,15 @@ const contactSchema = new mongoose.Schema({
     number: {
         type: String,
         required: true,
-        unique: true
+        // unique: true
     },
+    expenses: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Expense'
+    }]
     // we could add expense Schema in referene 
     // for a separate page of each conatct of user;
 })
-const Contact= mongoose.model('Contact', contactSchema);
+const Contact = mongoose.model('Contact', contactSchema);
 
 module.exports = Contact;

@@ -19,7 +19,11 @@ const UserSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Contact'
     }],
-    
+    expenses: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Expense'
+    }]
+
 }, { timestamps: true });
 
 const User = mongoose.model('user', UserSchema);
