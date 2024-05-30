@@ -43,13 +43,13 @@ function Home() {
             <p className="text-left text-sm sm:text-base">© {new Date().getFullYear()} Paisa Patrol. All rights reserved.</p>
           </div>
           <div className="flex justify-center space-x-4 mb-4 md:mb-0">
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://x.com/imgirish_07?t=YboCggNXpjvOHfxgWy2QZA&s=08" target="_blank" rel="noopener noreferrer">
               <img src={twitter} alt="Twitter" className="h-8 sm:h-10" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/imgirish_07?utm_source=qr&igsh=OXY3Z2VydGpsdXgz" target="_blank" rel="noopener noreferrer">
               <img src={instagram} alt="Instagram" className="h-8 sm:h-10" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/girish-kumar-b63b52252?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer">
               <img src={linkedin} alt="LinkedIn" className="h-8 sm:h-10" />
             </a>
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">

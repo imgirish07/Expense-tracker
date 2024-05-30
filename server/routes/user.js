@@ -1,9 +1,12 @@
 const express = require('express');
-const { handleUserLogin, handleUserSignup } = require('../controller/user');
 const router = express.Router();
+const { handleUserProfileInfo, handleGetContactInfo } = require('../controller/User');
 
-router.post('/signup', handleUserSignup);
+// route to get details of user with the contacts
+// to display on the contact or friends page
 
-router.post('/login', handleUserLogin);
+router.get('/profile', handleUserProfileInfo);
+
+router.get('/contacts', handleGetContactInfo);
 
 module.exports = router;

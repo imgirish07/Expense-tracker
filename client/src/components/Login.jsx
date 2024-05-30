@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import googleLogo from '../assets/GoogleLogo.png';
-import facebookLogo from '../assets/FacebookLogo.png';
+import GoogleLogo from '../assets/google.svg';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -71,11 +70,11 @@ function Login() {
                 </div>
 
                 <div className='text-white font-medium h-[40px] w-[100%] gap-x-1 flex items-center justify-center  ' >
-                        New to this site?
-                        <Link to="/signup" className='text-red-600 hover:text-orange-400'>Sign Up</Link>
-                    </div>
+                    New to this site?
+                    <Link to="/signup" className='text-red-600 hover:text-orange-400'>Sign Up</Link>
+                </div>
 
-                <div className=' flex flex-col gap-2 my-[20px] h-[50%] px-4' >
+                <div className=' flex flex-col gap-2 my-[20px] h-[45%] px-4' >
                     {/* 
                     <input type="text" name="PhoneNumber" placeholder="Phone Number" className='border rounded-lg h-[40px] px-[10px] bg-[#f1f1f1]' /> */}
 
@@ -100,19 +99,19 @@ function Login() {
                         Or
                     </div>
 
-                    <div className='flex flex-row gap-2 gap-x-7'>
-
-                        <div className='flex justify-center items-center rounded-xl h-[50px] w-[50px] border-2 border-gray-400 hover:border-orange-400'  >
-                            <button type="submit" onClick={handleGoogle} className="bg-no-repeat bg-cover  h-[30px] w-[30px] " style={{ backgroundImage: `url(${googleLogo})` }}></button>
-                        </div>
-
-                        <div className='flex justify-center items-center rounded-xl h-[50px] w-[50px] border-2 border-gray-400 hover:border-orange-400' >
-                            <button type="submit" style={{ height: '30px', width: '30px', backgroundImage: `url(${facebookLogo})`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', backgroundPosition: 'center' }}></button>
-                        </div>
-
-                    </div>
-
                 </div>
+
+                <div className='flex justify-center items-center border-2 border-gray-400 hover:border-orange-400 h-[40px] bg-transparent text-white font-bold mx-4'>
+                    <button
+                        type="submit"
+                        onClick={handleGoogle}
+                        className="flex items-center justify-center space-x-2 h-full w-full px-4"
+                    >
+                        <img src={GoogleLogo} alt="Google Logo" className="h-5 w-5" />
+                        <span>Google</span>
+                    </button>
+                </div>
+
             </div>
         </div>
     )

@@ -1,5 +1,4 @@
-const express = require('express');
-const { Expense } = require('../models/expense');
+const Expense = require('../models/Expense');
 
 // function to handle date and time. Required to push into historyArray
 async function addTimestamp() {

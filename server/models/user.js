@@ -14,9 +14,14 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    contacts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Contact'
+    }],
+    
 }, { timestamps: true });
 
 const User = mongoose.model('user', UserSchema);
 
-module.exports = { User };
+module.exports = User;

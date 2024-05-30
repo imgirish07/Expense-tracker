@@ -10,10 +10,17 @@ async function signUser(user) {
 
 async function userVerify(token) {
     if (!token) { return null; }
-    return jwt.verify(token, secretKey);
+    try {
+        const decoded = jwt.verify(token, secretKey);
+        return decoded;
+    } catch (error) {
+        console.error('Error verifying token:', error);
+        return null;
+    }
+    // return jwt.verify(token, secretKey);
 }
 
-module.exports={
+module.exports = {
     signUser,
     userVerify
 };
