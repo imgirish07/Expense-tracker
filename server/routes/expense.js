@@ -1,7 +1,8 @@
 const express = require('express');
-const handleExpense = require('../controller/Expense');
+const {handleExpense, handleRemoveExpense} = require('../controller/Expense');
 const router = express.Router();
 
-router.post('/expense', handleExpense);
+router.post('/addexpense', handleExpense);
+router.post('/remove-expense',handleRemoveExpense);
 
 module.exports = router;

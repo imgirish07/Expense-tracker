@@ -39,7 +39,7 @@ async function handleExpense(req, res) {
         Description,
         Category,
     });
-    const fetchUser =await GetUserFromCookies(req, res);
+    const fetchUser = await GetUserFromCookies(req, res);
     const user = await User.findById(fetchUser._id);
     await user.expenses.push(expense._id);
     await user.save();
@@ -54,4 +54,49 @@ async function handleExpense(req, res) {
     return res.status(200).json({ message: "expense created successfully", expense });
 }
 
-module.exports = handleExpense;
+async function handleRemoveExpense(req, res) {
+    try {
+        // Retrieve user from cookies
+        const user = await GetUserFromCookies(req, res);
+
+        if (!user) {
+            return res.status(401).json({ message: "Unauthorized access" });
+        }
+
+        // Get id of the expense to be deleted from body
+        const { expenseId, contactId } = req.body;
+        if (!expenseId) {
+            return res.status(400).json({ message: "No expense ID provided" });
+        }
+
+        // Find the expense and delete it
+        const deletedExpense = await Expense.findByIdAndDelete(expenseId);
+        if (!deletedExpense) {
+            return res.status(404).json({ message: "Expense not found", expenseId });
+        }
+
+        // Remove the expense from the user's expenses array
+        await User.updateOne(
+            { _id: user._id },
+            { $pull: { expenses: expenseId } }
+        );
+
+        // If contactId is provided, remove the expense from the contact's expenses array
+        if (contactId) {
+            await Contact.updateOne(
+                { _id: contactId },
+                { $pull: { expenses: expenseId } }
+            );
+        }
+
+        // Respond with success message
+        res.status(200).json({ message: "Expense removed successfully", expenseId });
+    } catch (error) {
+        // Handle unexpected errors
+        console.error("Error removing expense:", error);
+        res.status(500).json({ message: "Internal server error", error });
+    }
+}
+
+
+module.exports = { handleExpense, handleRemoveExpense };

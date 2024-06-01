@@ -64,8 +64,8 @@ async function removeContactFromUserSchema(userId, contactData) {
 
 async function handleContactDelete(req, res) {
     const user = await GetUserFromCookies(req);
+    // this id is of the contact to be deleted
     const { id } = req.body;
-
     if (!id) res.status(201).json({ message: id });
 
     const deletedContact = await Contact.findByIdAndDelete(id);

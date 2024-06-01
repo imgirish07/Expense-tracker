@@ -20,7 +20,7 @@ const contactRoute = require('./routes/Contact');
 const { restrictedToLoggedinUserOnly } = require('./middlewares/auth');
 const getUserProfile = require('./routes/User');
 const getUserContact = require('./routes/User');
-
+const logoutRoute= require('./routes/Logout');
 // connect to MongoDB
 connectToMongoDB(process.env.MONGODB_URI);
 
@@ -48,6 +48,7 @@ app.use(passport.session());
 // routes
 app.use('/', homeRoute);
 app.use('/user', userRoute);
+app.use('/user', logoutRoute);
 app.use('/', expenseRoute);
 app.use('/', contactRoute);
 app.use('/user', getUserProfile);
