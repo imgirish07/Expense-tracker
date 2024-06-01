@@ -1,6 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const  User  = require('../models/User');
+const User = require('../models/User');
 const { signUser } = require('../service/auth');
 
 // // function to validate the email using Regular Expression (Regex)
@@ -79,11 +79,11 @@ async function handleUserLogin(req, res) {
 
         res.cookie('token', token, {
             httpOnly: true,
-            secure:true,
+            secure: true,
             path: '/',
         });
 
-        return res.status(200).json({ msg: 'login successful', boolValue: true });
+        return res.status(200).json({ msg: 'login successful', user, boolValue: true });
     }
     else {
         return res.status(400).json({ msg: 'login failed' });

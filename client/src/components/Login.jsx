@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import GoogleLogo from '../assets/google.svg';
 import { Link, useNavigate } from "react-router-dom";
@@ -36,10 +36,10 @@ function Login() {
             });
 
             const data = res.data;
-
+            console.log("data in frontend testing...", data);
             const boolValue = data.boolValue;
             if (boolValue) {
-                navigate("/")
+                navigate("/expensepage")
             }
             console.log(data);
 

@@ -2,12 +2,12 @@ const { userVerify } = require('../service/auth')
 
 // this function is to obtain user from jwt token stored in the cookies
 async function GetUserFromCookies(req, res) {
-    
-    // const token = req.body.cookies.token;
-    
-    // // our token is in headers sent from the frontend we need to access it
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1]; // Bearer token
+
+    const token = await req.cookies.token;
+
+    // // THIS IS HOW WE ACCESS THE TOKEN USING AUTHORIZATION
+    // const authHeader = req.headers['authorization'];
+    // const token = authHeader && authHeader.split(' ')[1]; // Bearer token
 
     console.log("JWTtoken inside the cookie is:", token);
 
@@ -24,7 +24,7 @@ async function GetUserFromCookies(req, res) {
     return user;
 }
 
-module.exports= GetUserFromCookies;
+module.exports = GetUserFromCookies;
 
 // // THE TOKEN SHOULD BE STORED IN THE BODY IN THE FORMAT
 // {
@@ -32,5 +32,5 @@ module.exports= GetUserFromCookies;
 //     "number": "12364589621",
 //     "cookies":{
 //         "token": "XXX.JWT_TOKEN."
-//     }   
+//     }
 // }

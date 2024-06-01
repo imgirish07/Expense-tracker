@@ -20,6 +20,7 @@ const contactRoute = require('./routes/Contact');
 const { restrictedToLoggedinUserOnly } = require('./middlewares/auth');
 const getUserProfile = require('./routes/User');
 const getUserContact = require('./routes/User');
+const getUserExpenses= require('./routes/User');
 const logoutRoute= require('./routes/Logout');
 // connect to MongoDB
 connectToMongoDB(process.env.MONGODB_URI);
@@ -53,6 +54,7 @@ app.use('/', expenseRoute);
 app.use('/', contactRoute);
 app.use('/user', getUserProfile);
 app.use('/user', getUserContact);
+app.use('/user',getUserExpenses);
 
 // app.get('/check', restrictedToLoggedinUserOnly, (req, res) => {
 //     return res.json({ message: "Middleware is Working" });
