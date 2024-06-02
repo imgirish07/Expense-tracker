@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ReactComponent as LogoutIcon } from '../assets/logout.svg';
+import contactSvg from '../assets/contacts.svg';
+import dashboardSvg from '../assets/dashboard.svg';
+import dateSvg from '../assets/date.svg';
+import historySvg from '../assets/history.svg';
+import moneySvg from '../assets/money.svg';
+import messageSvg from '../assets/message.svg';
 
 const baseUrl = 'http://localhost:8000';
 
@@ -11,39 +18,28 @@ function ExpensePage() {
     const [amount, setAmount] = useState(0);
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
+    const [totalExpenses, setTotalExpenses] = useState(0);
+
+    const navigate = useNavigate();
 
     const handleAvatarChange = (e) => {
         setAvatar(URL.createObjectURL(e.target.files[0]));
     };
 
-    const navigate = useNavigate();
-    const handleCallback = async () => {
-        try {
-            const res = await axios.get(`${process.env.REACT_APP_GOOGLE_SUCCESS_LOGIN_URI}`, {
-                withCredentials: true,
-            });
-            const data = res.data;
-            const boolValue = data.boolValue;
-            if (boolValue) {
-                console.log("User Data received in frontend", data);
-            }
-        } catch (error) {
-            console.log("Error is : ", error);
-        }
-    }
-
     const handleAmount = (e) => {
         const value = e.target.value;
         setAmount(value);
-    }
+    };
+
     const handleDescription = (e) => {
         const value = e.target.value;
         setDescription(value);
-    }
+    };
+
     const handleCategory = (e) => {
         const value = e.target.value;
         setCategory(value);
-    }
+    };
 
     const handleSubmitExpense = async () => {
         try {
@@ -51,39 +47,41 @@ function ExpensePage() {
                 Amount: amount,
                 Description: description,
                 Category: category,
-            },
-                { withCredentials: true }
-            );
+            }, {
+                withCredentials: true,
+            });
             const expenseData = res.data;
             console.log("Expense data ", expenseData);
-
+            // Fetch the updated list of expenses after adding a new one
+            fetchExpenses();
         } catch (error) {
             console.log("Error : ", error);
         }
-    }
-
-    useEffect(() => {
-        handleCallback();
-        fetchExpenses();
-    }, [navigate]); // Removed `expenses` from dependencies
+    };
 
     const fetchExpenses = async () => {
         try {
-            const res = await axios.get(`${baseUrl}/user/expenses`);
+            const res = await axios.get(`${baseUrl}/user/expenses`, {
+                withCredentials: true,
+            });
             const userData = res.data;
-            const newExpense = userData.expenses;
-            setExpenses([...expenses, newExpense]);
-            console.log(" Expense Data of USer : ", newExpense);
-
-            console.log("Fetched Expenses:", expenses);
+            console.log("User Data for testing...", userData);
+            setExpenses(userData.expenses);
+            setTotalExpenses(userData.expenses.reduce((acc, expense) => acc + expense.Amount, 0));
         } catch (error) {
             console.log("Error fetching expenses:", error);
         }
-    }
+    };
+
+    useEffect(() => {
+        fetchExpenses();
+    }, [navigate]);
 
     return (
-        <div className="flex flex-wrap min-h-screen">
-            <div className="w-full sm:w-1/3 lg:w-1/4 p-4 bg-gray-100 flex flex-col">
+        <div className="flex flex-col sm:flex-row h-[92.4vh] overflow-hidden bg-gradient-to-r from-gray-300 via-[#c595d1] to-[#d4c6d9]">
+
+            {/* LEFT SECTION */}
+            <div className="w-full border sm:border-gray-50 sm:rounded-none sm:w-[30%] lg:w-[30%] lg:mx-7 lg:my-7 p-4 bg-white bg-opacity-60 sm:bg-opacity-80 flex flex-col justify-center items-center shadow-md m-2 lg:rounded-2xl md:rounded-2xl transition duration-200">
                 <div className="flex flex-col items-center mb-4">
                     <div className="mb-2">
                         <input type="file" onChange={handleAvatarChange} className="hidden" id="avatar" />
@@ -91,56 +89,125 @@ function ExpensePage() {
                             <img
                                 src={avatar || 'https://cdn.pixabay.com/photo/2023/02/01/09/25/cristiano-ronaldo-7760045_960_720.png'}
                                 alt="Avatar"
-                                className="rounded-full w-24 h-24"
+                                className="rounded-full w-24 h-24 border-4 border-white hover:border-gray-400 transition duration-200"
                             />
                         </label>
                     </div>
-                    <h2 className="text-lg font-semibold">{username}</h2>
+                    <h2 className="text-lg font-semibold text-gray-700 sm:text-xl">Username</h2>
                 </div>
-                <nav className="flex-grow">
-                    <ul>
-                        <li className="mb-2"><a href="/add-expenses" className="text-blue-500">Add Expenses</a></li>
-                        <li className="mb-2"><a href="/dashboard" className="text-blue-500">Dashboard</a></li>
-                        <li className="mb-2"><a href="/history" className="text-blue-500">History</a></li>
-                        <li className="mb-2"><a href="/contacts" className="text-blue-500">Contacts</a></li>
+                <div className="flex-grow w-[100%] ">
+                    <ul className="flex flex-col items-center gap-2 ">
+                        <li className="mb-2 flex items-center justify-center w-full">
+                            <a href="/add-expenses" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-center transition duration-200 border border-gray-300 hover:border-gray-400 rounded-lg p-2" style={{ width: "90%" }}>
+                                <img src={moneySvg} alt="Money" className="w-8 h-8 fill-current mr-2" />
+                                Add Expense
+                            </a>
+                        </li>
+                        <li className="mb-2 flex items-center justify-center w-full">
+                            <a href="/contacts" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-center transition duration-200 border border-gray-300 hover:border-gray-400 rounded-lg p-2" style={{ width: "90%" }}>
+                                <img src={contactSvg} alt="Contacts" className="w-8 h-8 fill-current mr-2" />
+                                Contacts
+                            </a>
+                        </li>
+                        <li className="mb-2 flex items-center justify-center w-full">
+                            <a href="/dashboard" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-center transition duration-200 border border-gray-300 hover:border-gray-400 rounded-lg p-2" style={{ width: "90%" }}>
+                                <img src={dashboardSvg} alt="Dashboard" className="w-8 h-8 fill-current mr-2" />
+                                Dashboard
+                            </a>
+                        </li>
+                        <li className="mb-2 flex items-center justify-center w-full">
+                            <a href="/history" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-center transition duration-200 border border-gray-300 hover:border-gray-400 rounded-lg p-2" style={{ width: "90%" }}>
+                                <img src={historySvg} alt="History" className="w-8 h-8 fill-current mr-2" />
+                                History
+                            </a>
+                        </li>
                     </ul>
-                </nav>
-                <button className="mt-4 bg-red-500 text-white p-2 rounded">Logout</button>
+                </div>
+
+                <Link to="/logout" className="mt-4 flex items-center text-red-500 hover:text-red-700 transition duration-200 font-bold">
+                    <svg className="w-8 h-8 fill-current mr-1" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M17 18h-5v-1c0-1.1-.9-2-2-2H4V9h6c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4C2.9 4 2 4.9 2 6v4c0 1.1.9 2 2 2h5v1c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2v-1c0-1.1-.9-2-2-2zm-1-6H7V6h9v6z" />
+                    </svg>
+                    Logout
+                </Link>
             </div>
-            <div className="w-full sm:w-2/3 lg:w-3/4 p-4">
-                <div className="flex flex-row space-x-4">
-                    <div className="w-1/2">
-                        <div className="space-y-4">
-                            <div>
-                                <input type="number" id="amount" name="amount" placeholder='Amount' onChange={handleAmount} className='bg-transparent  h-[40px] px-[10px] mt-1 block w-full border border-gray-300 rounded-md p-2' required />
+
+            {/* RIGHT SECTION */}
+            <div className="border sm:border-gray-50 sm:rounded-none w-full sm:w-2/3 lg:w-3/4 p-4 lg:mx-7 lg:my-7 shadow-md m-2 bg-white bg-opacity-60 sm:bg-opacity-80 flex flex-col items-center overflow-y-auto lg:rounded-2xl md:rounded-2xl transition duration-200">
+
+                <div className="w-full lg:w-[60%] mt-4 space-y-4 mb-4 p-4 flex justify-center border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
+                    <div className="text-2xl font-bold text-purple-800">
+                        Total Expenses: <span className="text-red-500 text-2xl">&#8377;{totalExpenses}</span>
+                    </div>
+                </div>
+
+                <div className="w-full max-w-md flex flex-col items-center space-y-4 rounded-lg p-4 lg:max-w-lg xl:max-w-xl">
+                    <input
+                        type="number"
+                        id="amount"
+                        name="amount"
+                        placeholder="Amount"
+                        onChange={handleAmount}
+                        className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-md"
+                        required
+                    />
+
+                    <input
+                        type="text"
+                        id="description"
+                        name="FirstName"
+                        placeholder="Description"
+                        onChange={handleDescription}
+                        className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-md"
+                    />
+
+                    <input
+                        type="text"
+                        id="category"
+                        name="category"
+                        placeholder="Category"
+                        onChange={handleCategory}
+                        className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-md"
+                        required
+                    />
+
+                    <button
+                        type="submit"
+                        onClick={handleSubmitExpense}
+                        className="bg-pink-600 text-white p-2 rounded-lg hover:bg-pink-400 transition duration-200 flex items-center justify-center hover:shadow-md"
+                    >
+                        <span className="mr-1 ">+</span> Add Expense
+                    </button>
+                </div>
+
+                <div className="w-full lg:w-[60%] mt-4 space-y-4">
+                    {expenses.map((expense, index) => (
+                        <div key={index} className="p-4 border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
+                            <div className="flex flex-col sm:flex-row sm:justify-between">
+                                <div className="flex justify-between w-full">
+                                    <span className="text-lg font-semibold uppercase text-purple-800">{expense.Category}</span>
+                                    <span className={`text-lg font-semibold ${expense.Amount >= 0 ? 'text-green-500' : 'text-red-500'}`}>&#8377; {Math.abs(expense.Amount)}</span>
+                                </div>
                             </div>
-                            <div>
-                                <input type="text" id="description" name="FirstName" placeholder="Description" onChange={handleDescription} className='bg-transparent  h-[40px] px-[10px] mt-1 block w-full border border-gray-300 rounded-md p-2' />
+                            <div className="flex flex-col sm:flex-row sm:justify-between mt-2">
+                                <div className="flex items-center">
+                                    <img src={dateSvg} alt="Date" className="w-6 h-6 fill-current mr-2" />
+                                    <span className="ml-2">{new Date(expense.createdAt).toLocaleDateString()}</span>
+                                </div>
+                                <div className="flex items-center mt-2 sm:mt-0">
+                                    <img src={messageSvg} alt="Message" className="w-6 h-6 fill-current mr-2" />
+                                    <span className="ml-2 capitalize">{expense.Description}</span>
+                                </div>
                             </div>
-                            <div>
-                                <input type="text" id="category" name="category" placeholder="Category" onChange={handleCategory} className='bg-transparent  h-[40px] px-[10px] mt-1 block w-full border border-gray-300 rounded-md p-2' required />
-                            </div>
-                            <div>
-                                <label htmlFor="contacts" className="block text-sm font-medium text-gray-700">Contacts (Optional)</label>
-                                <input type="text" id="contacts" name="contacts" className="mt-1 block w-full border border-gray-300 rounded-md p-2" />
-                            </div>
-                            <button type="submit" onClick={handleSubmitExpense} className="w-full bg-blue-500 text-white p-2 rounded">Add Expense</button>
                         </div>
-                    </div>
-                    <div className="w-1/2 flex flex-col space-y-2">
-                        {expenses.map((expense, index) => (
-                            <div key={expense._id} className="p-4 border border-gray-300 rounded-md">
-                                <div><strong>Amount:</strong> ${expense.Amount}</div>
-                                <div><strong>Category:</strong> {expense.Category}</div>
-                                <div><strong>Date:</strong> {new Date(expense.createdAt).toLocaleDateString()}</div>
-                                <div><strong>Description:</strong> {expense.Description}</div>
-                            </div>
-                        ))}
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
-    )
+
+
+    );
 }
 
 export default ExpensePage;

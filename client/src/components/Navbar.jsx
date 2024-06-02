@@ -48,7 +48,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-[#272727] w-full overflow-hidden p-4">
+        <nav className=" bg-[#272727] w-full overflow-hidden p-4">
             <div className="mx-0 flex justify-between items-center">
                 <div className="text-white text-2xl font-semibold ml-4">
                     <Link to="/">XpenseTracker</Link>

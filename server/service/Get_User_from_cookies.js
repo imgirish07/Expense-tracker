@@ -12,15 +12,17 @@ async function GetUserFromCookies(req, res) {
     console.log("JWTtoken inside the cookie is:", token);
 
     if (!token) {
-        return res.status(400).json({ message: "invalid token" });
+        // return res.status(400).json({ message: "invalid token" });
+        return null;
     }
 
     const user = await userVerify(token);
 
     if (!user) {
-        return res.status(404).json({ msg: "invalid user" });
+        // return res.status(404).json({ msg: "invalid user" });
+        return null;
     }
-    req.user = user;
+    
     return user;
 }
 
