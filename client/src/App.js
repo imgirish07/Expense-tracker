@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ExpensePage from "./components/ExpensePage";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import History from "./components/History";
+import AddExpense from "./components/AddExpense";
 
 function App() {
   return (
@@ -39,6 +41,15 @@ function App() {
           <Routes>
             <Route path="/expensepage" element={<ExpensePage />} />
           </Routes>
+
+          <Routes>
+            <Route path="/addexpense" element={<AddExpense />} />
+          </Routes>
+
+          <Routes>
+            <Route path="/history" element={<History />} />
+          </Routes>
+          
         </div>
       </BrowserRouter>
     </>
