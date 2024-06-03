@@ -8,6 +8,7 @@ import dateSvg from '../assets/date.svg';
 import historySvg from '../assets/history.svg';
 import moneySvg from '../assets/money.svg';
 import messageSvg from '../assets/message.svg';
+import LogoutSvg from '../assets/logout.svg';
 
 const baseUrl = 'http://localhost:8000';
 
@@ -78,7 +79,7 @@ function ExpensePage() {
     }, [navigate]);
 
     return (
-        <div className="flex flex-col sm:flex-row h-[92.4vh] overflow-hidden bg-gradient-to-r from-gray-300 via-[#c595d1] to-[#d4c6d9]">
+        <div className="flex flex-col sm:flex-row h-[92.4vh] overflow-y-auto bg-gradient-to-r from-gray-300 via-[#c595d1] to-[#d4c6d9]">
 
             {/* LEFT SECTION */}
             <div className="w-full border sm:border-gray-50 sm:rounded-none sm:w-[30%] lg:w-[30%] lg:mx-7 lg:my-7 p-4 bg-white bg-opacity-60 sm:bg-opacity-80 flex flex-col justify-center items-center shadow-md m-2 lg:rounded-2xl md:rounded-2xl transition duration-200">
@@ -95,50 +96,41 @@ function ExpensePage() {
                     </div>
                     <h2 className="text-lg font-semibold text-gray-700 sm:text-xl">Username</h2>
                 </div>
-                <div className="flex-grow w-[100%] ">
-                    <ul className="flex flex-col items-center gap-2 ">
+                <div className="flex-grow w-[100%]">
+                    <ul className="flex flex-col items-center gap-2">
                         <li className="mb-2 flex items-center justify-center w-full">
-                            <a href="/add-expenses" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-center transition duration-200 border border-gray-300 hover:border-gray-400 rounded-lg p-2" style={{ width: "90%" }}>
+                            <Link to="/expensepage" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-start border border-gray-50 hover:border-gray-300 p-4 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 text-xl" style={{ width: "90%" }}>
                                 <img src={moneySvg} alt="Money" className="w-8 h-8 fill-current mr-2" />
                                 Add Expense
-                            </a>
+                            </Link>
                         </li>
                         <li className="mb-2 flex items-center justify-center w-full">
-                            <a href="/contacts" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-center transition duration-200 border border-gray-300 hover:border-gray-400 rounded-lg p-2" style={{ width: "90%" }}>
+                            <a href="/contacts" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-start border border-gray-50 hover:border-gray-300 p-4 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 text-xl" style={{ width: "90%" }}>
                                 <img src={contactSvg} alt="Contacts" className="w-8 h-8 fill-current mr-2" />
                                 Contacts
                             </a>
                         </li>
                         <li className="mb-2 flex items-center justify-center w-full">
-                            <a href="/dashboard" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-center transition duration-200 border border-gray-300 hover:border-gray-400 rounded-lg p-2" style={{ width: "90%" }}>
+                            <a href="/dashboard" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-start border border-gray-50 hover:border-gray-300 p-4 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 text-xl" style={{ width: "90%" }}>
                                 <img src={dashboardSvg} alt="Dashboard" className="w-8 h-8 fill-current mr-2" />
                                 Dashboard
                             </a>
                         </li>
                         <li className="mb-2 flex items-center justify-center w-full">
-                            <a href="/history" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-center transition duration-200 border border-gray-300 hover:border-gray-400 rounded-lg p-2" style={{ width: "90%" }}>
+                            <a href="/history" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-start border border-gray-50 hover:border-gray-300 p-4 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 text-xl" style={{ width: "90%" }}>
                                 <img src={historySvg} alt="History" className="w-8 h-8 fill-current mr-2" />
                                 History
                             </a>
                         </li>
                     </ul>
                 </div>
-
-                <Link to="/logout" className="mt-4 flex items-center text-red-500 hover:text-red-700 transition duration-200 font-bold">
-                    <svg className="w-8 h-8 fill-current mr-1" viewBox="0 0 24 24">
-                        <path d="M0 0h24v24H0z" fill="none" />
-                        <path d="M17 18h-5v-1c0-1.1-.9-2-2-2H4V9h6c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4C2.9 4 2 4.9 2 6v4c0 1.1.9 2 2 2h5v1c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2v-1c0-1.1-.9-2-2-2zm-1-6H7V6h9v6z" />
-                    </svg>
-                    Logout
-                </Link>
             </div>
 
             {/* RIGHT SECTION */}
-            <div className="border sm:border-gray-50 sm:rounded-none w-full sm:w-2/3 lg:w-3/4 p-4 lg:mx-7 lg:my-7 shadow-md m-2 bg-white bg-opacity-60 sm:bg-opacity-80 flex flex-col items-center overflow-y-auto lg:rounded-2xl md:rounded-2xl transition duration-200">
-
+            <div className="border sm:border-gray-50 sm:rounded-none w-full sm:w-2/3 lg:w-3/4 p-4 lg:mx-7 lg:my-7 shadow-md m-2 bg-white bg-opacity-60 sm:bg-opacity-80 flex flex-col items-center lg:rounded-2xl md:rounded-2xl transition duration-200">
                 <div className="w-full lg:w-[60%] mt-4 space-y-4 mb-4 p-4 flex justify-center border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
                     <div className="text-2xl font-bold text-purple-800">
-                        Total Expenses: <span className="text-red-500 text-2xl">&#8377;{totalExpenses}</span>
+                        Total Expense : <span className="text-red-500 text-2xl">&#8377;{totalExpenses}</span>
                     </div>
                 </div>
 
@@ -149,7 +141,7 @@ function ExpensePage() {
                         name="amount"
                         placeholder="Amount"
                         onChange={handleAmount}
-                        className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-md"
+                        className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-purple-800 hover:shadow-md"
                         required
                     />
 
@@ -159,7 +151,7 @@ function ExpensePage() {
                         name="FirstName"
                         placeholder="Description"
                         onChange={handleDescription}
-                        className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-md"
+                        className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-purple-800 hover:shadow-md"
                     />
 
                     <input
@@ -168,7 +160,7 @@ function ExpensePage() {
                         name="category"
                         placeholder="Category"
                         onChange={handleCategory}
-                        className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-md"
+                        className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-purple-800 hover:shadow-md"
                         required
                     />
 
@@ -177,11 +169,12 @@ function ExpensePage() {
                         onClick={handleSubmitExpense}
                         className="bg-pink-600 text-white p-2 rounded-lg hover:bg-pink-400 transition duration-200 flex items-center justify-center hover:shadow-md"
                     >
-                        <span className="mr-1 ">+</span> Add Expense
+                        <span className="mr-2 text-2xl leading-none">+</span>
+                        <span className="text-xl">Add Expense</span>
                     </button>
                 </div>
 
-                <div className="w-full lg:w-[60%] mt-4 space-y-4">
+                <div className="w-full lg:w-[60%] mt-4 space-y-4 overflow-y-auto overflow-hidden hide-scrollbar">
                     {expenses.map((expense, index) => (
                         <div key={index} className="p-4 border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
                             <div className="flex flex-col sm:flex-row sm:justify-between">
@@ -203,9 +196,19 @@ function ExpensePage() {
                         </div>
                     ))}
                 </div>
+
+                <style jsx>{`
+                        .hide-scrollbar::-webkit-scrollbar {
+                            display: none;
+                        }
+                        .hide-scrollbar {
+                            -ms-overflow-style: none;
+                            scrollbar-width: none;
+                        }`}
+                </style>
+
             </div>
         </div>
-
 
     );
 }
