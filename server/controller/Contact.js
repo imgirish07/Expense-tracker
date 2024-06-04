@@ -51,27 +51,30 @@ async function handleContact(req, res) {
 }
 
 // // CONTACT DELETE
-async function removeContactFromUserSchema(userId, contactData) {
-    const user = await User.findById(userId);
-    if (!user)
-        return null;
-    // removing ContactData From the list of contacts
-    user.contacts = user.contacts.filter(contact => contact._id != contactData._id);
-    const savedUser = await user.save();
-    if (!savedUser) return null;
-    return;
-}
+
+// async function removeContactFromUserSchema(userId, contactData) {
+//     const user = await User.findById(userId);
+//     if (!user)
+//         return null;
+//     // removing ContactData From the list of contacts
+//     user.contacts = user.contacts.filter(contact => contact._id != contactData._id);
+//     const savedUser = await user.save();
+//     if (!savedUser) return null;
+//     return;
+// }
 
 async function handleContactDelete(req, res) {
     const user = await GetUserFromCookies(req);
     // this id is of the contact to be deleted
     const { id } = req.body;
+    console.log("received id is : ", id)
+
     if (!id) res.status(201).json({ message: id });
 
     const deletedContact = await Contact.findByIdAndDelete(id);
     if (!deletedContact) res.status(201).json({ message: id });
 
-    removeContactFromUserSchema(user._id, deletedContact);
+    // removeContactFromUserSchema(user._id, deletedContact);
 
     // Use $pull to remove the contact ID from the user's contacts array
     await User.updateOne(

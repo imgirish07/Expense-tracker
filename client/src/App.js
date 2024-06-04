@@ -8,12 +8,14 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import History from "./components/History";
 import AddExpense from "./components/AddExpense";
+import UserContacts from "./components/UserContacts";
+import ContactExpense from "./components/ContactExpense";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        
+
         <Navbar />
 
         <div>
@@ -47,9 +49,17 @@ function App() {
           </Routes>
 
           <Routes>
+            <Route path="/addcontacts" element={<UserContacts />} />
+          </Routes>
+
+          <Routes>
+            <Route path="/contactdetails" element={<ContactExpense />} />
+          </Routes>
+
+          <Routes>
             <Route path="/history" element={<History />} />
           </Routes>
-          
+
         </div>
       </BrowserRouter>
     </>
