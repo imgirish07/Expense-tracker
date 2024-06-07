@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./components/About";
 import ContactUs from "./components/ContactUs";
 import Dashboard from "./components/Dashboard";
-
+import ContactDetails from "./components/ContactDetails";
 
 function App() {
   return (
@@ -39,6 +39,10 @@ function App() {
 
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>
+
+          <Routes>
+            <Route path="/contactdetails" element={<ContactDetails />} />
           </Routes>
 
         </div>

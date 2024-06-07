@@ -12,6 +12,8 @@ import LogoutSvg from '../assets/logout.svg';
 import AddExpense from './AddExpense';
 import ContactList from './ContactList';
 import History from './History';
+import ContactDetails from './ContactDetails';
+import ContactExpense from './ContactExpense';
 
 const baseUrl = 'http://localhost:8000';
 
@@ -133,8 +135,11 @@ function Dashboard() {
 
             {/* RIGHT SECTION */}
             <div className="border sm:border-gray-50 sm:rounded-none w-full sm:w-2/3 lg:w-3/4 p-4 lg:mx-7 lg:my-7 shadow-md m-2 bg-white bg-opacity-60 sm:bg-opacity-80 flex flex-col items-center lg:rounded-2xl md:rounded-2xl transition duration-200">
+                <div className="" >
+                    THIS IS THE DASHBOARD
+                </div>
 
-                < AddExpense
+                {/* {< AddExpense
                     avatar={avatar}
                     handleAvatarChange={handleAvatarChange}
                     amount={amount}
@@ -146,11 +151,13 @@ function Dashboard() {
                     handleSubmitExpense={handleSubmitExpense}
                     totalExpenses={totalExpenses}
                     expenses={expenses}
-                />
+                />} */}
 
-                {/* <ContactList /> */}
+                <ContactList />
 
                 {/* < History expenses={expenses} totalExpenses={totalExpenses}  /> */}
+
+                {/* < ContactDetails /> */}
 
             </div>
         </div>

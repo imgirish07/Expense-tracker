@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import deleteSvg from '../assets/delete.svg';
-import ContactExpense from './ContactExpense';
+import { useNavigate } from 'react-router-dom';
 
 const baseUrl = 'http://localhost:8000';
 
@@ -71,7 +71,10 @@ function ContactList() {
     useEffect(() => {
         fetchContacts();
     }, []);
-
+    const navigate = useNavigate;
+    const handleContactDetails = (contact) => {
+        navigate('/contactdetails', { state: { contactId: contact._id } });
+    };
     return (
         <>
             <div className="w-full lg:w-[60%] mt-4 space-y-4 mb-4 p-4 flex justify-center border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
@@ -115,7 +118,7 @@ function ContactList() {
                     <div key={index} className="p-4 border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 bg-white">
                         <div className="flex justify-between items-center">
                             <div className="flex flex-col">
-                                <span className="text-md font-semibold uppercase text-purple-800">{contact.name}</span>
+                                <span className="text-md font-semibold uppercase text-purple-800" onClick={() => handleContactDetails(contact)}>{contact.name}</span>
                                 <span className="text-xl font-bold text-gray-600">{contact.number}</span>
                             </div>
                             <div className="flex items-center ">
@@ -124,7 +127,6 @@ function ContactList() {
                                 </button>
                             </div>
                         </div>
-                        <ContactExpense expenses={contact.expenses} />
                     </div>
                 ))}
             </div>
