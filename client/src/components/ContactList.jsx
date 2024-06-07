@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const baseUrl = 'http://localhost:8000';
 
-function ContactList() {
+function ContactList({ setRightSection }) {
     const [contacts, setContacts] = useState([]);
     const [name, setName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -71,10 +71,18 @@ function ContactList() {
     useEffect(() => {
         fetchContacts();
     }, []);
+
     const navigate = useNavigate;
+
     const handleContactDetails = (contact) => {
         navigate('/contactdetails', { state: { contactId: contact._id } });
     };
+
+    // onclick function to show and add expense 
+    const onContactDetailsClick = () => {
+        setRightSection("ContactDetails");
+    }
+
     return (
         <>
             <div className="w-full lg:w-[60%] mt-4 space-y-4 mb-4 p-4 flex justify-center border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
@@ -115,11 +123,11 @@ function ContactList() {
 
             <div className="w-full lg:w-[60%] mt-4 space-y-4 overflow-y-auto overflow-hidden hide-scrollbar">
                 {contacts.map((contact, index) => (
-                    <div key={index} className="p-4 border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 bg-white">
+                    <div key={index} className="p-4 border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
                         <div className="flex justify-between items-center">
                             <div className="flex flex-col">
-                                <span className="text-md font-semibold uppercase text-purple-800" onClick={() => handleContactDetails(contact)}>{contact.name}</span>
-                                <span className="text-xl font-bold text-gray-600">{contact.number}</span>
+                                <span className="text-md font-semibold uppercase text-purple-800" onClick={() => handleContactDetails(contact)}>{contact.name} </span>
+                                <span className="text-xl font-bold text-gray-600" onClick={() => handleContactDetails(contact)} >{contact.number}</span>
                             </div>
                             <div className="flex items-center ">
                                 <button onClick={() => handleDeleteContact(contact._id)} className=" text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center">

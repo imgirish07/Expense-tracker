@@ -4,6 +4,7 @@ import messageSvg from '../assets/message.svg';
 
 function AddExpense({ avatar, handleAvatarChange, amount, handleAmount, description, handleDescription, category, handleCategory, handleSubmitExpense, totalExpenses, expenses }) {
     return (
+
         <>
             <div className="w-full lg:w-[60%] mt-4 space-y-4 mb-4 p-4 flex justify-center border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
                 <div className="text-2xl font-bold text-purple-800">

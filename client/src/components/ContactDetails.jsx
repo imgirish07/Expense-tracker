@@ -5,17 +5,18 @@ import ContactExpense from './ContactExpense';
 
 const baseUrl = 'http://localhost:8000';
 
-const ContactDetails = () => {
-    const location = useLocation();
-    const { contactId } = location.state;
+const ContactDetails = ({contactId}) => {
+    // const location = useLocation();
+    // const { contactId } = location.state;
     const [expenses, setExpenses] = useState([])
     const [totalexpense, setTotalExpense] = useState(0);
     const [newexpense, setNewExpense] = useState({
         "amount": 0,
         "category": "food",
-        "description": "This is just for testing",
+        "description": "",
     });
 
+    // Expense of a contact using ContactID 
     const fetchExpenseList = async () => {
         try {
             const fetchededContact = await axios.post(`${baseUrl}/contactdetails`,
@@ -40,10 +41,12 @@ const ContactDetails = () => {
         fetchExpenseList();
     }, []);
 
+    // onChange function
     const handleExpenseChange = (event) => {
         setNewExpense({ ...newexpense, [event.target.name]: event.target.value });
     };
 
+    // Add Expense of the contact
     const handleAddExpense = async () => {
         try {
             await axios.post(`${baseUrl}/addexpense`, {

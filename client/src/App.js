@@ -41,10 +41,6 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
 
-          <Routes>
-            <Route path="/contactdetails" element={<ContactDetails />} />
-          </Routes>
-
         </div>
       </BrowserRouter>
     </>

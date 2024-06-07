@@ -9,21 +9,6 @@ const Navbar = () => {
     const { isAuthenticated, logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     // Call the backend endpoint to check authentication status
-    //     fetch('http://localhost:8000/', {
-    //         method: 'GET',
-    //         credentials: 'include', // Include cookies in the request
-    //     })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             setIsAuthenticated(data.isAuthenticated);
-    //         })
-    //         .catch(error => {
-    //             console.error('Error checking authentication:', error);
-    //         });
-    // }, []);
-
     const handleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
