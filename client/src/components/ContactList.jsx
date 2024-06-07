@@ -73,7 +73,7 @@ function ContactList() {
     }, []);
 
     return (
-        <div className="border sm:border-gray-50 sm:rounded-none w-full sm:w-2/3 lg:w-3/4 p-4 lg:mx-7 lg:my-7 shadow-md m-2 bg-white bg-opacity-60 sm:bg-opacity-80 flex flex-col items-center lg:rounded-2xl md:rounded-2xl transition duration-200">
+        <>
             <div className="w-full lg:w-[60%] mt-4 space-y-4 mb-4 p-4 flex justify-center border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
                 <div className="text-2xl font-bold text-purple-800">
                     My Contacts
@@ -138,7 +138,7 @@ function ContactList() {
                     scrollbar-width: none;
                 }`}
             </style>
-        </div>
+        </>
     );
 }
 

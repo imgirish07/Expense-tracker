@@ -3,13 +3,10 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import Navbar from './components/Navbar';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ExpensePage from "./components/ExpensePage";
 import About from "./components/About";
-import Contact from "./components/Contact";
-import History from "./components/History";
-import AddExpense from "./components/AddExpense";
-import UserContacts from "./components/UserContacts";
-import ContactExpense from "./components/ContactExpense";
+import ContactUs from "./components/ContactUs";
+import Dashboard from "./components/Dashboard";
+
 
 function App() {
   return (
@@ -29,7 +26,7 @@ function App() {
           </Routes>
 
           <Routes>
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/contact-us" element={<ContactUs />} />
           </Routes>
 
           <Routes>
@@ -41,23 +38,7 @@ function App() {
           </Routes>
 
           <Routes>
-            <Route path="/expensepage" element={<ExpensePage />} />
-          </Routes>
-
-          <Routes>
-            <Route path="/addexpense" element={<AddExpense />} />
-          </Routes>
-
-          <Routes>
-            <Route path="/addcontacts" element={<UserContacts />} />
-          </Routes>
-
-          <Routes>
-            <Route path="/contactdetails" element={<ContactExpense />} />
-          </Routes>
-
-          <Routes>
-            <Route path="/history" element={<History />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
 
         </div>

@@ -10,12 +10,12 @@ import moneySvg from '../assets/money.svg';
 import messageSvg from '../assets/message.svg';
 import LogoutSvg from '../assets/logout.svg';
 import AddExpense from './AddExpense';
+import ContactList from './ContactList';
 import History from './History';
-
 
 const baseUrl = 'http://localhost:8000';
 
-function ExpensePage() {
+function Dashboard() {
     const [username, setUsername] = useState('John Doe');
     const [avatar, setAvatar] = useState(null);
     const [expenses, setExpenses] = useState([]);
@@ -103,23 +103,24 @@ function ExpensePage() {
                 <div className="flex-grow w-[100%]">
                     <ul className="flex flex-col items-center gap-2">
                         <li className="mb-2 flex items-center justify-center w-full">
-                            <Link to="/expensepage" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-start border border-gray-50 hover:border-gray-300 p-4 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 text-xl" style={{ width: "90%" }}>
-                                <img src={moneySvg} alt="Money" className="w-8 h-8 fill-current mr-2" />
-                                Add Expense
-                            </Link>
-                        </li>
-                        <li className="mb-2 flex items-center justify-center w-full">
-                            <Link to="/addcontacts" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-start border border-gray-50 hover:border-gray-300 p-4 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 text-xl" style={{ width: "90%" }}>
-                                <img src={contactSvg} alt="Contacts" className="w-8 h-8 fill-current mr-2" />
-                                Contacts
-                            </Link>
-                        </li>
-                        <li className="mb-2 flex items-center justify-center w-full">
                             <Link to="/dashboard" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-start border border-gray-50 hover:border-gray-300 p-4 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 text-xl" style={{ width: "90%" }}>
                                 <img src={dashboardSvg} alt="Dashboard" className="w-8 h-8 fill-current mr-2" />
                                 Dashboard
                             </Link>
                         </li>
+                        <li className="mb-2 flex items-center justify-center w-full">
+                            <Link to="/add-expense" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-start border border-gray-50 hover:border-gray-300 p-4 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 text-xl" style={{ width: "90%" }}>
+                                <img src={moneySvg} alt="Money" className="w-8 h-8 fill-current mr-2" />
+                                Add Expense
+                            </Link>
+                        </li>
+                        <li className="mb-2 flex items-center justify-center w-full">
+                            <Link to="/add-contact" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-start border border-gray-50 hover:border-gray-300 p-4 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 text-xl" style={{ width: "90%" }}>
+                                <img src={contactSvg} alt="Contacts" className="w-8 h-8 fill-current mr-2" />
+                                Contacts
+                            </Link>
+                        </li>
+
                         <li className="mb-2 flex items-center justify-center w-full">
                             <Link to="/history" className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-start border border-gray-50 hover:border-gray-300 p-4 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 text-xl" style={{ width: "90%" }}>
                                 <img src={historySvg} alt="History" className="w-8 h-8 fill-current mr-2" />
@@ -133,7 +134,6 @@ function ExpensePage() {
             {/* RIGHT SECTION */}
             <div className="border sm:border-gray-50 sm:rounded-none w-full sm:w-2/3 lg:w-3/4 p-4 lg:mx-7 lg:my-7 shadow-md m-2 bg-white bg-opacity-60 sm:bg-opacity-80 flex flex-col items-center lg:rounded-2xl md:rounded-2xl transition duration-200">
 
-                {/* Add Expense Component */}
                 < AddExpense
                     avatar={avatar}
                     handleAvatarChange={handleAvatarChange}
@@ -148,10 +148,13 @@ function ExpensePage() {
                     expenses={expenses}
                 />
 
+                {/* <ContactList /> */}
+
+                {/* < History expenses={expenses} totalExpenses={totalExpenses}  /> */}
+
             </div>
         </div>
-
     );
 }
 
-export default ExpensePage;
+export default Dashboard

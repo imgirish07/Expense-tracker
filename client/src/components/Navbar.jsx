@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from "react-router-dom";
-import { ReactComponent as LoginIcon } from "../assets/login.svg";
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ReactComponent as LoginIcon } from '../assets/login.svg';
 import { ReactComponent as LogoutIcon } from '../assets/logout.svg';
-
+import { AuthContext } from '../Context/AuthContext';
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const { isAuthenticated, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        // Call the backend endpoint to check authentication status
-        fetch('http://localhost:8000/', {
-            method: 'GET',
-            credentials: 'include', // Include cookies in the request
-        })
-            .then(response => response.json())
-            .then(data => {
-                setIsAuthenticated(data.isAuthenticated);
-            })
-            .catch(error => {
-                console.error('Error checking authentication:', error);
-            });
-    }, []);
+    // useEffect(() => {
+    //     // Call the backend endpoint to check authentication status
+    //     fetch('http://localhost:8000/', {
+    //         method: 'GET',
+    //         credentials: 'include', // Include cookies in the request
+    //     })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             setIsAuthenticated(data.isAuthenticated);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error checking authentication:', error);
+    //         });
+    // }, []);
 
     const handleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
 
     // logout
-    const navigate = useNavigate();
     const handleLogout = () => {
         // Call the backend logout endpoint
         fetch('http://localhost:8000/user/logout', {
@@ -38,7 +38,7 @@ const Navbar = () => {
             .then(response => response.json())
             .then(data => {
                 // Clear any local state related to authentication
-                setIsAuthenticated(false);
+                logout();
                 // Navigate to the login page or any other desired page
                 navigate('/login');
             })
@@ -56,10 +56,10 @@ const Navbar = () => {
                 <div className="hidden md:flex space-x-7">
                     <Link to="/" className="text-white text-xl hover:text-red-700">HOME</Link>
                     <Link to="/about" className="text-white text-xl hover:text-red-700">ABOUT</Link>
-                    <Link to="/contact" className="text-white text-xl hover:text-red-700">CONTACT US</Link>
+                    <Link to="/contact-us" className="text-white text-xl hover:text-red-700">CONTACT US</Link>
                     {isAuthenticated && (
-                        <Link to="/expensepage" className="text-white text-xl hover:text-red-700">
-                            EXPENSE
+                        <Link to="/dashboard" className="text-white text-xl hover:text-red-700">
+                            DASHBOARD
                         </Link>
                     )}
                 </div>
@@ -113,17 +113,16 @@ const Navbar = () => {
                         <Link to="/about" className="block px-2 py-4 text-white text-xl hover:text-red-500">ABOUT</Link>
                     </li>
                     <li>
-                        <Link to="/contact" className="block px-2 py-4 text-white text-xl hover:text-red-500">CONTACT US</Link>
+                        <Link to="/contact-us" className="block px-2 py-4 text-white text-xl hover:text-red-500">CONTACT US</Link>
                     </li>
                     {isAuthenticated && (
                         <li>
-                            <Link to="/expensepage" className="block px-2 py-4 text-white text-xl hover:text-red-500">EXPENSE</Link>
+                            <Link to="/dashboard" className="block px-2 py-4 text-white text-xl hover:text-red-500">DASHBOARD</Link>
                         </li>
                     )}
                 </ul>
             </div>
         </nav>
-
     );
 };
 

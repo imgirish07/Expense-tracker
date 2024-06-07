@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useState } from 'react';
 import GoogleLogo from '../assets/google.svg';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { AuthContext } from '../Context/AuthContext';
 
 
 function Login() {
 
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
 
     // Implementation of Show Password
     const [showPassword, setShowPassword] = useState(false);
@@ -39,7 +41,8 @@ function Login() {
             console.log("data in frontend testing...", data);
             const boolValue = data.boolValue;
             if (boolValue) {
-                navigate("/expensepage")
+                login();  // Update the authentication state
+                navigate("/dashboard")
             }
             console.log(data);
 
