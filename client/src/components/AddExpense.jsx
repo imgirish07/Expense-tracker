@@ -1,59 +1,112 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import dateSvg from '../assets/date.svg';
 import messageSvg from '../assets/message.svg';
+import axios from 'axios';
 
-function AddExpense({ avatar, handleAvatarChange, amount, handleAmount, description, handleDescription, category, handleCategory, handleSubmitExpense, totalExpenses, expenses }) {
+const baseUrl = 'http://localhost:8000';
+
+function AddExpense() {
+    const [expenses, setExpenses] = useState([]);
+    const [oldexpenses, setOldExpenses] = useState([]);
+    const [totalexpense, setTotalExpense] = useState(0);
+    const [newexpense, setNewExpense] = useState({
+        amount: 0,
+        category: "food",
+        description: "",
+    });
+    // Expense of a contact using ContactID 
+    const fetchExpenseList = async () => {
+        try {
+            const res = await axios.get(`${baseUrl}/user/expenses`, {
+                withCredentials: true,
+            });
+            const userData = res.data;
+            setExpenses(userData.expenses);
+        } catch (error) {
+            console.log("Error fetching expenses:", error);
+        }
+    };
+    useEffect(() => {
+        fetchExpenseList();
+    }, []);
+
+    useEffect(() => {
+        if (expenses.length) {
+            setTotalExpense(expenses.reduce((acc, expense) => acc + expense.Amount, 0));
+            setOldExpenses([...expenses].reverse());
+        }
+    }, [expenses]);
+
+    // onChange function
+    const handleExpenseChange = (event) => {
+        setNewExpense({ ...newexpense, [event.target.name]: event.target.value });
+    };
+
+    // Add Expense of the contact
+    const handleAddExpense = async () => {
+        try {
+            await axios.post(`${baseUrl}/addexpense`, {
+                Amount: newexpense.amount,
+                Category: newexpense.category,
+                Description: newexpense.description,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                withCredentials: true,
+            });
+            // Refresh the expense list
+            await fetchExpenseList();
+            setNewExpense({ amount: 0, category: "food", description: "" });
+        } catch (error) {
+            console.error("Error adding expense:", error);
+        }
+    };
+
     return (
-
         <>
             <div className="w-full lg:w-[60%] mt-4 space-y-4 mb-4 p-4 flex justify-center border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
                 <div className="text-2xl font-bold text-purple-800">
-                    Total Expense : <span className="text-red-500 text-2xl">&#8377;{totalExpenses}</span>
+                    Total Expense : <span className="text-red-500 text-2xl">&#8377;{totalexpense}</span>
                 </div>
             </div>
-
             <div className="w-full max-w-md flex flex-col items-center space-y-4 rounded-lg p-4 lg:max-w-lg xl:max-w-xl">
                 <input
                     type="number"
+                    value={newexpense.amount}
                     id="amount"
                     name="amount"
                     placeholder="Amount"
-                    onChange={handleAmount}
+                    onChange={handleExpenseChange}
                     className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-purple-800 hover:shadow-md"
                     required
                 />
-
                 <input
                     type="text"
                     id="description"
-                    name="FirstName"
+                    value={newexpense.description}
+                    name="description"
                     placeholder="Description"
-                    onChange={handleDescription}
+                    onChange={handleExpenseChange}
                     className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-purple-800 hover:shadow-md"
                 />
-
-                <input
-                    type="text"
-                    id="category"
-                    name="category"
-                    placeholder="Category"
-                    onChange={handleCategory}
-                    className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-purple-800 hover:shadow-md"
-                    required
-                />
-
+                <select value={newexpense.category} name="category" onChange={handleExpenseChange} className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-purple-800 hover:shadow-md">
+                    <option value="food">Food</option>
+                    <option value="udhar">Udhar</option>
+                    <option value="travel">Travel</option>
+                    <option value="education">Education</option>
+                    <option value="other">Others</option>
+                </select>
                 <button
-                    type="submit"
-                    onClick={handleSubmitExpense}
+                    onClick={handleAddExpense}
                     className="bg-pink-600 text-white p-2 rounded-lg hover:bg-pink-400 transition duration-200 flex items-center justify-center hover:shadow-md"
                 >
                     <span className="mr-2 text-2xl leading-none">+</span>
                     <span className="text-xl">Add Expense</span>
                 </button>
             </div>
-
             <div className="w-full lg:w-[60%] mt-4 space-y-4 overflow-y-auto overflow-hidden hide-scrollbar">
-                {expenses.reverse().slice(0, 3).map((expense, index) => (
+                {oldexpenses.slice(0, 3).map((expense, index) => (
                     <div key={index} className="p-4 border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
                         <div className="flex flex-col sm:flex-row sm:justify-between">
                             <div className="flex justify-between w-full">
@@ -74,19 +127,17 @@ function AddExpense({ avatar, handleAvatarChange, amount, handleAmount, descript
                     </div>
                 ))}
             </div>
-
-            {/* <style jsx>{`
-                        .hide-scrollbar::-webkit-scrollbar {
-                            display: none;
-                        }
-                        .hide-scrollbar {
-                            -ms-overflow-style: none;
-                            scrollbar-width: none;
-                        }`}
-                </style> */}
-
+            <style jsx>{`
+                .hide-scrollbar::-webkit-scrollbar {
+                    display: none;
+                }
+                .hide-scrollbar {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+            `}</style>
         </>
-    )
+    );
 }
 
-export default AddExpense
+export default AddExpense;

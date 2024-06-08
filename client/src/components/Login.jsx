@@ -5,9 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { AuthContext } from '../Context/AuthContext';
 
-
 function Login() {
-
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
 
@@ -54,9 +52,7 @@ function Login() {
     // // Redirect to Google login page and then i can login and data will be stored in backend
     const handleGoogle = async (req, res) => {
         try {
-
             window.location.href = `${process.env.REACT_APP_GOOGLE_LOGIN_URI}`;
-
         } catch (error) {
             console.log("error : ", error);
         }
@@ -114,7 +110,6 @@ function Login() {
                         <span>Google</span>
                     </button>
                 </div>
-
             </div>
         </div>
     )

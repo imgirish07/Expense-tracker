@@ -36,11 +36,11 @@ const Navbar = () => {
         <nav className=" bg-[#272727] w-full overflow-hidden p-4">
             <div className="mx-0 flex justify-between items-center">
                 <div className="text-white text-2xl font-semibold ml-4">
-                    <Link to="/">XpenseTracker</Link>
+                    <Link to="/">Paisa Patrol</Link>
                 </div>
                 <div className="hidden md:flex space-x-7">
                     <Link to="/" className="text-white text-xl hover:text-red-700">HOME</Link>
-                    <Link to="/about" className="text-white text-xl hover:text-red-700">ABOUT</Link>
+                    {/* <Link to="/about" className="text-white text-xl hover:text-red-700">ABOUT</Link> */}
                     <Link to="/contact-us" className="text-white text-xl hover:text-red-700">CONTACT US</Link>
                     {isAuthenticated && (
                         <Link to="/dashboard" className="text-white text-xl hover:text-red-700">
@@ -94,9 +94,9 @@ const Navbar = () => {
                     <li className="active">
                         <Link to="/" className="block px-2 py-4 text-white text-xl hover:text-red-500">HOME</Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to="/about" className="block px-2 py-4 text-white text-xl hover:text-red-500">ABOUT</Link>
-                    </li>
+                    </li> */}
                     <li>
                         <Link to="/contact-us" className="block px-2 py-4 text-white text-xl hover:text-red-500">CONTACT US</Link>
                     </li>

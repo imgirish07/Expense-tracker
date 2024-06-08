@@ -1,20 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import dateSvg from '../assets/date.svg';
 import messageSvg from '../assets/message.svg';
+import axios from 'axios';
 
 const baseUrl = 'http://localhost:8000';
 
-function History({ expenses, totalExpenses }) {
+function History() {
+    const [expenses, setExpenses] = useState([]);
+    const [oldexpenses, setOldExpenses] = useState([]);
+    const [totalexpense, setTotalExpense] = useState(0);
+
+    // Expense of a contact using ContactID 
+    const fetchExpenseList = async () => {
+        try {
+            const res = await axios.get(`${baseUrl}/user/expenses`, {
+                withCredentials: true,
+            });
+            const userData = res.data;
+            setExpenses(userData.expenses);
+        } catch (error) {
+            console.log("Error fetching expenses:", error);
+        }
+    };
+    useEffect(() => {
+        fetchExpenseList();
+    }, []);
+
+    // use Effect to make the expense list reverse whenever expense is added
+    useEffect(() => {
+        if (expenses.length) {
+            setTotalExpense(expenses.reduce((acc, expense) => acc + expense.Amount, 0));
+            setOldExpenses([...expenses].reverse());
+        }
+    }, [expenses]);
+
     return (
         <>
             <div className="w-full lg:w-[60%] mt-4 space-y-4 mb-4 p-4 flex justify-center border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
                 <div className="text-2xl font-bold text-purple-800">
-                    Total Expense : <span className="text-red-500 text-2xl">&#8377;{totalExpenses}</span>
+                    Total Expense : <span className="text-red-500 text-2xl">&#8377;{totalexpense}</span>
                 </div>
             </div>
-
             <div className="w-full lg:w-[60%] mt-4 space-y-4 overflow-y-auto overflow-hidden hide-scrollbar">
-                {expenses.reverse().map((expense, index) => (
+                {oldexpenses.map((expense, index) => (
                     <div key={index} className="p-4 border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
                         <div className="flex flex-col sm:flex-row sm:justify-between">
                             <div className="flex justify-between w-full">
