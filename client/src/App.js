@@ -11,6 +11,8 @@ import AddExpense from "./components/AddExpense";
 import ContactList from "./components/ContactList";
 import History from "./components/History";
 import DashContent from "./components/DashContent";
+import AnthropicAI from "./components/AnthropicAI";
+
 function App() {
   return (
     <>
@@ -29,6 +31,7 @@ function App() {
               <Route path="contacts" element={<ContactList />} />
               <Route path="contactdetails" element={<ContactDetails />} />
               <Route path="history" element={<History />} />
+              <Route path="assistant" element={< AnthropicAI/>} />
             </Route>
           </Routes>
         </div>

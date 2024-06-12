@@ -24,7 +24,7 @@ function Home() {
               <Link to={"/login"}>Create an Account</Link>
             </button>
             <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg text-sm sm:text-lg transition-all duration-300">
-              <Link to={"/about"}>Learn More</Link>
+              <Link to={"/contact-us"}>Contact Us</Link>
             </button>
           </div>
         </div>
@@ -35,8 +35,8 @@ function Home() {
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Why Choose Paisa Patrol?</h2>
         <div className="flex flex-wrap justify-center gap-8">
           <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center transform hover:scale-105 transition-transform">
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">CHAT GPT Support</h3>
-            <p className="text-gray-700 text-center">Get finance-related advice and ask about the statistics of your expenses with our integrated CHAT GPT support.</p>
+            <h3 className="text-xl font-semibold mb-2 text-gray-800">Claude Anthropic AI Support</h3>
+            <p className="text-gray-700 text-center">Get finance-related advice with our integrated Claude Anthropic AI support.</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center transform hover:scale-105 transition-transform">
             <h3 className="text-xl font-semibold mb-2 text-gray-800">Email Services</h3>

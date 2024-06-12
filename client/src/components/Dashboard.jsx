@@ -15,7 +15,6 @@ function Dashboard() {
         <div className="flex flex-col sm:flex-row h-[92.4vh] overflow-y-auto bg-gradient-to-r from-gray-300 via-[#c595d1] to-[#d4c6d9]">
 
             {/* LEFT SECTION */}
-            {/* LEFT SECTION */}
             <div className="w-full border sm:border-gray-50 sm:rounded-none sm:w-[30%] lg:w-[30%] lg:mx-7 lg:my-7 p-4 bg-white bg-opacity-60 sm:bg-opacity-80 flex flex-col justify-center items-center shadow-md m-2 lg:rounded-2xl md:rounded-2xl transition duration-200">
                 <div className="flex flex-col items-center mb-4">
                     <div className="mb-2">
@@ -61,6 +60,14 @@ function Dashboard() {
                                 <Link to="history" className="flex items-center">
                                     <img src={historySvg} alt="History" className="w-8 h-8 fill-current mr-2" />
                                     <span>History</span>
+                                </Link>
+                            </div>
+                        </li>
+                        <li className="mb-2 flex items-center justify-center w-full">
+                            <div className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-start border border-gray-50 hover:border-gray-300 p-4 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 text-xl" style={{ width: "90%" }} >
+                                <Link to="assistant" className="flex items-center">
+                                    <img src={historySvg} alt="History" className="w-8 h-8 fill-current mr-2" />
+                                    <span>AI Assistant</span>
                                 </Link>
                             </div>
                         </li>
