@@ -31,7 +31,7 @@ function App() {
               <Route path="contacts" element={<ContactList />} />
               <Route path="contactdetails" element={<ContactDetails />} />
               <Route path="history" element={<History />} />
-              <Route path="assistant" element={< AnthropicAI/>} />
+              <Route path="assistant" element={< AnthropicAI />} />
             </Route>
           </Routes>
         </div>

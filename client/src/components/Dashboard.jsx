@@ -4,6 +4,7 @@ import contactSvg from '../assets/contacts.svg';
 import dashboardSvg from '../assets/dashboard.svg';
 import historySvg from '../assets/history.svg';
 import moneySvg from '../assets/money.svg';
+import assistant from '../assets/assistant.svg';
 
 function Dashboard() {
     const [avatar, setAvatar] = useState(null);
@@ -66,7 +67,7 @@ function Dashboard() {
                         <li className="mb-2 flex items-center justify-center w-full">
                             <div className="text-gray-700 hover:text-gray-400 font-bold flex items-center justify-start border border-gray-50 hover:border-gray-300 p-4 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200 text-xl" style={{ width: "90%" }} >
                                 <Link to="assistant" className="flex items-center">
-                                    <img src={historySvg} alt="History" className="w-8 h-8 fill-current mr-2" />
+                                    <img src={assistant} alt="History" className="w-8 h-8 fill-current mr-2" />
                                     <span>AI Assistant</span>
                                 </Link>
                             </div>

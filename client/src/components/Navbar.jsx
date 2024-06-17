@@ -43,7 +43,7 @@ const Navbar = () => {
                     {/* <Link to="/about" className="text-white text-xl hover:text-red-700">ABOUT</Link> */}
                     <Link to="/contact-us" className="text-white text-xl hover:text-red-700">CONTACT US</Link>
                     {isAuthenticated && (
-                        <Link to="/dashboard" className="text-white text-xl hover:text-red-700">
+                        <Link to="/dashboard/dashcontent" className="text-white text-xl hover:text-red-700">
                             DASHBOARD
                         </Link>
                     )}
@@ -102,7 +102,7 @@ const Navbar = () => {
                     </li>
                     {isAuthenticated && (
                         <li>
-                            <Link to="/dashboard" className="block px-2 py-4 text-white text-xl hover:text-red-500">DASHBOARD</Link>
+                            <Link to="/dashboard/dashcontent" className="block px-2 py-4 text-white text-xl hover:text-red-500">DASHBOARD</Link>
                         </li>
                     )}
                 </ul>

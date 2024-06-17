@@ -40,7 +40,7 @@ function Login() {
             const boolValue = data.boolValue;
             if (boolValue) {
                 login();  // Update the authentication state
-                navigate("/dashboard")
+                navigate("/dashboard/dashcontent")
             }
             console.log(data);
 

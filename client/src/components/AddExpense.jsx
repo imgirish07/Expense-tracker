@@ -14,18 +14,20 @@ function AddExpense() {
         category: "food",
         description: "",
     });
-    // Expense of a contact using ContactID 
+    // Fetch Expense  
     const fetchExpenseList = async () => {
         try {
             const res = await axios.get(`${baseUrl}/user/expenses`, {
                 withCredentials: true,
             });
             const userData = res.data;
+            console.log("User Data : ",userData);
             setExpenses(userData.expenses);
         } catch (error) {
             console.log("Error fetching expenses:", error);
         }
     };
+    
     useEffect(() => {
         fetchExpenseList();
     }, []);
