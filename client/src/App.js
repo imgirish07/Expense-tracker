@@ -12,6 +12,7 @@ import ContactList from "./components/ContactList";
 import History from "./components/History";
 import DashContent from "./components/DashContent";
 import AnthropicAI from "./components/AnthropicAI";
+import ForgotPassword from "./components/ForgotPassword";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="contact-us" element={<ContactUs />} />
             <Route path="signup" element={<Signup />} />
             <Route path="login" element={<Login />} />
+            <Route path="forgotpassword" element={<ForgotPassword />} />
             <Route path="dashboard" element={<Dashboard />}>
               <Route path="dashcontent" element={<DashContent />} />
               <Route path="addexpense" element={<AddExpense />} />

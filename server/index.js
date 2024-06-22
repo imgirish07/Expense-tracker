@@ -9,6 +9,9 @@ const passport = require('passport');
 require('./passport');
 const session = require('express-session');
 
+//path
+const path = require('path');
+
 // connection with mongoDB
 const { connectToMongoDB } = require('./connection');
 
@@ -22,8 +25,12 @@ const getUserProfile = require('./routes/User');
 const getUserContact = require('./routes/User');
 const getUserExpenses = require('./routes/User');
 const logoutRoute = require('./routes/Logout');
+//multer image upload
+const imageUploadRoute=require('./routes/Upload')
 //claude Anthropic AI
-const anthropicAIRouter= require('./routes/AnthropicAI');
+const anthropicAIRouter = require('./routes/AnthropicAI');
+//NodeMailer
+const passwordResetRoute = require('./routes/PasswordReset');
 
 // connect to MongoDB
 connectToMongoDB(process.env.MONGODB_URI);
@@ -39,6 +46,7 @@ app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true,
 }));
+app.use('/images',express.static(path.join(__dirname,'/upload/images')));
 
 // middlewares for google authentication
 app.use(session({
@@ -55,10 +63,12 @@ app.use('/user', userRoute);
 app.use('/user', logoutRoute);
 app.use('/', expenseRoute);
 app.use('/', contactRoute);
+app.use('/',imageUploadRoute);
 app.use('/user', getUserProfile);
 app.use('/user', getUserContact);
 app.use('/user', getUserExpenses);
-app.use('/api',anthropicAIRouter);
+app.use('/api', anthropicAIRouter);
+app.use('/', passwordResetRoute);
 
 // app.get('/check', restrictedToLoggedinUserOnly, (req, res) => {
 //     return res.json({ message: "Middleware is Working" });

@@ -92,7 +92,7 @@ function AddExpense() {
                     onChange={handleExpenseChange}
                     className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-purple-800 hover:shadow-md"
                 />
-                <select value={newexpense.category} name="category" onChange={handleExpenseChange} className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-purple-800 hover:shadow-md">
+                <select value={newexpense.category} name="category" onChange={handleExpenseChange} className="bg-white h-[50px] px-4 mt-1 block w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-purple-800 hover:shadow-md ">
                     <option value="food">Food</option>
                     <option value="udhar">Udhar</option>
                     <option value="travel">Travel</option>

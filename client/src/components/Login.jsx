@@ -83,8 +83,16 @@ function Login() {
                         name="Password"
                         placeholder="Password" onChange={handlePassword} className='bg-transparent border border-red-600 text-white h-[40px] px-[10px] ' />
 
-                    <button type="button" onClick={() => setShowPassword(!showPassword)} className='flex px-[12px] w-[40px] text-gray-400 font-medium '> {showPassword ? 'Hide' : 'Show'}
-                    </button>
+                    <div className='flex justify-between'>
+                        {/* showPassword */}
+                        <button type="button" onClick={() => setShowPassword(!showPassword)} className=' px-[12px] w-[40px] text-gray-400 font-medium '> {showPassword ? 'Hide' : 'Show'}
+                        </button>
+
+                        {/* ForgotPassword */}
+                        <p type="button" className='px-[12px] w-[auto] text-gray-400 font-medium '>
+                            <Link to='/forgotpassword'>Forgot Password</Link>
+                        </p>
+                    </div>
 
                 </div>
 
@@ -111,7 +119,7 @@ function Login() {
                     </button>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -53,6 +53,7 @@ async function handleUserSignup(req, res) {
     return res.status(201).json({ user, message: "successful signup", boolValue: true });
 }
 
+
 async function handleUserLogin(req, res) {
     // get user data from frontend
     const { email, password } = req.body;
