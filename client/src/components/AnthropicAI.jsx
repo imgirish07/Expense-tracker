@@ -25,7 +25,7 @@ function AnthropicAI() {
 
             const message = res.data.completion; // Adjust based on your response structure
             setResponse(prevResponses => [...prevResponses, ...message]); // Append the new message to the previous responses
-            console.log("message:", message);
+            //console.log("message:", message);
         } catch (error) {
             console.log(error);
         }

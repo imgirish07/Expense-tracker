@@ -18,8 +18,7 @@ router.post("/anthropic", async (req, res) => {
       model: 'claude-3-opus-20240229',
     };
     const message = await anthropic.messages.create(params);
-
-    console.log(message.content );
+    //console.log(message.content );
     res.json({ completion: message.content });
   } catch (error) {
     console.error('Error:', error);

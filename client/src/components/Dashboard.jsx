@@ -48,7 +48,7 @@ function Dashboard() {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log(resp);
+            //console.log(resp);
             fetchUser();  // Refresh user data after uploading the image
             setImage(null);
         } catch (error) {
@@ -56,9 +56,7 @@ function Dashboard() {
         }
     };
 
-    // Pascal casing for userName
-
-
+    
     return (
         <div className="flex flex-col sm:flex-row h-[92.4vh] overflow-y-auto bg-gradient-to-r from-gray-300 via-[#c595d1] to-[#d4c6d9]">
 

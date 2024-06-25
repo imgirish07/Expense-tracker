@@ -30,7 +30,7 @@ function ContactList() {
                 withCredentials: true,
             });
             const contactData = res.data;
-            console.log("Contact data ", contactData);
+            //console.log("Contact data ", contactData);
             // Fetch the updated list of contacts after adding a new one
             fetchContacts();
         } catch (error) {
@@ -45,9 +45,9 @@ function ContactList() {
                 withCredentials: true,
             });
             const contactData = res.data;
-            console.log("Contact Data for testing...", contactData);
+            //console.log("Contact Data for testing...", contactData);
             await setContacts(contactData.contactList);
-            console.log("Contact Data", contacts);
+            //console.log("Contact Data", contacts);
         } catch (error) {
             console.log("Error fetching contacts:", error);
         }
@@ -55,7 +55,7 @@ function ContactList() {
 
     // Delete Contact
     const handleDeleteContact = async (deleteId) => {
-        console.log("Deleting contact with ID:", deleteId);
+        //console.log("Deleting contact with ID:", deleteId);
         try {
             const res = await axios.post(`${baseUrl}/removecontact`, {
                 id: deleteId
@@ -63,7 +63,7 @@ function ContactList() {
                 withCredentials: true,
             });
             const Response = res.data;
-            console.log("The deleted user was:", Response);
+            //console.log("The deleted user was:", Response);
             fetchContacts();
         } catch (error) {
             console.log("Error deleting contact:", error);

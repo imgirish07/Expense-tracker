@@ -16,7 +16,7 @@ function DashContent() {
                 withCredentials: true,
             });
             const userData = res.data;
-            console.log("User Data : ", userData);
+            //console.log("User Data : ", userData);
             setExpenses(userData.expenses);
         } catch (error) {
             console.log("Error fetching expenses:", error);

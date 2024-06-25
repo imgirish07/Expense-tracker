@@ -42,16 +42,16 @@ async function handleSendOtp(req, res) {
 async function handleChangePassword(req, res) {
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
-    console.log(user);
+    //console.log(user);
     if (!user) {
         res.json({ success: 0, message: 'email not registered' });
     }
     try {
         const saltrounds = 10;
         const newPassword = await bcrypt.hash(password, saltrounds);
-        console.log('newpassword', newPassword);
+        //console.log('newpassword', newPassword);
         const updatedUser = await User.findByIdAndUpdate(user._id, { password: newPassword }, { new: true });
-        console.log('updatedUser', updatedUser);
+        //console.log('updatedUser', updatedUser);
         res.json({ success: 1 });
     } catch {
         res.json({ success: 0, message: "password change failed" });

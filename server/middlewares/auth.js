@@ -7,14 +7,13 @@ async function restrictedToLoggedinUserOnly(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1]; // Bearer token
 
-    console.log("JWTtoken inside the cookie is:", token);
+    //console.log("JWTtoken inside the cookie is:", token);
 
     if (!token) {
         return res.status(400).json({ message: "invalid token" });
     }
 
     const user = await userVerify(token);
-    console.log("HEY user from middleware : ", user);
 
     if (!user) {
         return res.status(404).json({ msg: "invalid user" });

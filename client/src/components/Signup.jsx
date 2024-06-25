@@ -40,7 +40,7 @@ function Signup() {
       });
 
       const data = res.data;
-      console.log(data)
+      //console.log(data)
       const boolValue = data.boolValue;
 
       if (boolValue) {

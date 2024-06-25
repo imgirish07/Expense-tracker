@@ -32,7 +32,7 @@ passport.use(new GoogleStrategy({
             password: 'your*password*is*not*stored*in*the*database',
         }).save();
 
-        console.log("Google Profile is: ", profile);
+        // console.log("Google Profile is: ", profile);
 
         done(null, user);
     }
