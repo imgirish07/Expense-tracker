@@ -103,6 +103,14 @@ const ContactDetails = () => {
     };
     return (
         <>
+            <div className="w-full lg:w-[60%] mt-4 space-y-4 mb-4 p-4 flex justify-center border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
+                <div className="text-2xl font-bold text-purple-800">
+                    Total Expense : <span className={`text-2xl ${totalexpense < 0 ? 'text-red-500' : 'text-green-500'}`}>
+                        &#8377;{Math.abs(totalexpense)}
+                    </span>
+                </div>
+            </div>
+            
             <div className="w-full max-w-md flex flex-col items-center space-y-4 rounded-lg p-4 lg:max-w-lg xl:max-w-xl">
                 <input
                     type="number"
@@ -138,11 +146,7 @@ const ContactDetails = () => {
                     <span className="text-xl">Add Expense</span>
                 </button>
             </div>
-            <div className="w-full lg:w-[60%] mt-4 space-y-4 mb-4 p-4 flex justify-center border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">
-                <div className="text-2xl font-bold text-purple-800">
-                    Total Expense : <span className="text-red-500 text-2xl">&#8377;{totalexpense}</span>
-                </div>
-            </div>
+            
             <div className="w-full lg:w-[60%] mt-4 space-y-4 overflow-y-auto overflow-hidden hide-scrollbar">
                 {oldexpenses.map((expense, index) => (
                     <div key={index} className="p-4 border border-gray-300 rounded-lg sm:rounded-3xl shadow-md hover:shadow-lg transition duration-200">

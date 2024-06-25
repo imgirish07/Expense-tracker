@@ -71,7 +71,7 @@ function Dashboard() {
                             <img
                                 src={avatar ? avatar : 'https://cdn.pixabay.com/photo/2023/02/01/09/25/cristiano-ronaldo-7760045_960_720.png'}
                                 alt="Avatar"
-                                className="rounded-full w-24 h-24 border-4 border-white hover:border-gray-400 transition duration-200"
+                                className="rounded-full w-24 h-24 border-4 border-white hover:border-purple-400 transition duration-200"
                                 style={{ objectFit: 'cover' }}
                             />
                         </label>

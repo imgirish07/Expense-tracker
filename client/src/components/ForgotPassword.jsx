@@ -51,6 +51,9 @@ function ForgotPassword() {
             console.log('Error resetting password.');
         }
     }
+    // Implementation of Show Password
+    const [showPassword, setShowPassword] = useState(false);
+
     return (
         <div className='h-screen w-[100%] bg-[#1c1c1c] flex justify-center items-center'>
             <div className=' bg-[#272727] rounded-xl h-[70vh] w-[80vw] flex flex-col  sm:h-[70vh] sm:w-[40vw] lg:h-[70vh] lg:w-[25vw]'>
@@ -92,13 +95,23 @@ function ForgotPassword() {
                     )}
                     {step === 3 && (
                         <>
-                            <input
-                                type="password"
-                                name="password"
-                                placeholder="New Password"
-                                onChange={handlePasswordChange}
-                                className='bg-transparent border border-red-600 text-white h-[40px] px-[10px]'
-                            />
+                            <div className='relative'>
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    name="password"
+                                    placeholder="New Password"
+                                    onChange={handlePasswordChange}
+                                    className='bg-transparent border border-red-600 text-white h-[40px] px-[10px] w-full'
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className='absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 font-medium'
+                                >
+                                    {showPassword ? 'Hide' : 'Show'}
+                                </button>
+                            </div>
+
                             <div className='flex justify-center mt-20 items-center h-[40px] bg-[#0664D3] hover:bg-[#4d8be5] text-white font-bold mx-4'>
                                 <button onClick={handlePasswordSubmit}>Reset Password</button>
                             </div>

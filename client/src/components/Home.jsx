@@ -39,23 +39,28 @@ function Home() {
             <p className="text-gray-700 text-center">Get finance-related advice with our integrated Claude Anthropic AI support.</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center transform hover:scale-105 transition-transform">
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">Email Services</h3>
-            <p className="text-gray-700 text-center">Easily email your contacts directly from Paisa Patrol with our integrated email services.</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center transform hover:scale-105 transition-transform">
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">Payment Gateway Integration</h3>
-            <p className="text-gray-700 text-center">Seamlessly pay your contacts using our integrated payment gateway.</p>
+            <h3 className="text-xl font-semibold mb-2 text-gray-800">Nodemailer Services</h3>
+            <p className="text-gray-700 text-center">Don't worry about forgetting your passwords, reset using OTP verification with Nodemailer.</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center transform hover:scale-105 transition-transform">
             <h3 className="text-xl font-semibold mb-2 text-gray-800">Expense Statistics</h3>
-            <p className="text-gray-700 text-center">Visualize your expenses with graphs and charts based on monthly and weekly data.</p>
+            <p className="text-gray-700 text-center">Visualize your expenses with graphs and charts using React Charts 2 based on monthly and weekly data.</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center transform hover:scale-105 transition-transform">
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">Access User History</h3>
+            <h3 className="text-xl font-semibold mb-2 text-gray-800">Access User Expense History</h3>
             <p className="text-gray-700 text-center">Get access to all the history of a user to track their financial activities.</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center transform hover:scale-105 transition-transform">
+            <h3 className="text-xl font-semibold mb-2 text-gray-800">Track Friends' Expenses</h3>
+            <p className="text-gray-700 text-center">Add your friends' expenses by simply adding their contact number and keep track of their expenses.</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center transform hover:scale-105 transition-transform ">
+            <h3 className="text-xl font-semibold mb-2 text-gray-800 ">Secure Authentication</h3>
+            <p className="text-gray-700 text-center">Don't worry about security; we use Passport-Google-OAuth20 strategy for signup, login, and authentication.</p>
           </div>
         </div>
       </div>
+
 
       {/* Footer Section */}
       <div className="bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 text-white py-4">
