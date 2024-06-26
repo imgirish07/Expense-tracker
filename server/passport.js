@@ -33,7 +33,6 @@ passport.use(new GoogleStrategy({
         }).save();
 
         // console.log("Google Profile is: ", profile);
-
         done(null, user);
     }
 ));
